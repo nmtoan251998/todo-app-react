@@ -1,8 +1,10 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-const TodoList = ({todoList}) => {        
-    const todos = todoList.map( (todo) => {        
+const TodoList = ({todoList}) => {            
+    
+    const todos = todoList.map( (todo) => {             
+        // console.log(todo);
         return <TodoItem key={todo.id} description={todo.description} isCompleted={todo.isCompleted} index={todo.id}/>            
     })    
     // console.log(todos)

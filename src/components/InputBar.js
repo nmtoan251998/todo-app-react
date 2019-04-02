@@ -1,7 +1,7 @@
 import React from 'react';
 
 const InputBar = ( {onFormSubmit, onInputChange, value} ) => {
-    
+
     return (        
         <form className="mb-5">
             <div className="row">

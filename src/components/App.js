@@ -4,15 +4,17 @@ import InputBar from './InputBar';
 import TodoList from './TodoList';
 
 class App extends React.Component {
+    
     constructor(props) {
         super(props);
 
         this.state = {
             header: 'Todo List',            
-            value: ''
-        }
+            value: '',
+            todoList: []
+        }        
 
-        this.todoList = [
+        this.state.todoList = [
             {
                 id: 1,
                 isCompleted: false,
@@ -28,12 +30,21 @@ class App extends React.Component {
                 isCompleted: true,
                 description: 'Borrow some books from the library'
             }
-        ]
+        ]        
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();       
-        console.log(event)
+    handleSubmit = (event) => {        
+        event.preventDefault();
+        const newTodo = {
+            id: this.state.todoList.length+1,
+            isCompleted: false,
+            description: this.state.value
+        }                
+                
+        this.setState({
+            value: '',
+            todoList: [...this.state.todoList, newTodo]
+        });                
     }
 
     onInputChange = (event) => {                  
@@ -45,12 +56,12 @@ class App extends React.Component {
     // }
 
     render() {
-        console.log(this.state.value);
+        // console.log(this.state.value);
         return (
             <div className="container">
                 <Header headerName={this.state.header} />            
                 <InputBar value={this.state.value} onInputChange={this.onInputChange} onFormSubmit={this.handleSubmit}/>
-                <TodoList todoList={this.todoList}/>                
+                <TodoList todoList={this.state.todoList}/>                
             </div>            
         )
     }
