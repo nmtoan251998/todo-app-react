@@ -1,11 +1,16 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-const TodoList = ({todoList}) => {            
+const TodoList = ({todoList, itemStatus}) => {            
     
-    const todos = todoList.map( (todo) => {             
+    const todos = todoList.map( ({id, description, isCompleted}) => {             
         // console.log(todo);
-        return <TodoItem key={todo.id} description={todo.description} isCompleted={todo.isCompleted} index={todo.id}/>            
+        return <TodoItem 
+                    key={id} 
+                    description={description} 
+                    isCompleted={isCompleted} 
+                    index={id}
+                    itemStatus={itemStatus} />
     })    
     // console.log(todos)
 

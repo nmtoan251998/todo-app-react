@@ -1,7 +1,7 @@
 import React from 'react';
 import './TodoItem.css';
 
-const TodoItem = ({isCompleted, description, index}) => {           
+const TodoItem = ({isCompleted, description, index, itemStatus}) => {           
     // console.log(props)      
     const completedTextStyled = {
         textDecoration: 'line-through',
@@ -16,7 +16,12 @@ const TodoItem = ({isCompleted, description, index}) => {
                 <th scope="col">{index}</th>
                 <td style={completedTextStyled}>{description}</td>
                 <td>
-                    <i className="checkBtn fas fa-check-circle fa-2x" style={{"color": "lightgreen"}}></i>
+                    <i 
+                        className="checkBtn fas fa-check-circle fa-2x"
+                        data-id={index} 
+                        style={{"color": "lightgreen"}}
+                        onClick={itemStatus}
+                    ></i>
                 </td>
             </tr>
         )          
@@ -27,7 +32,11 @@ const TodoItem = ({isCompleted, description, index}) => {
             <th scope="col">{index}</th>
             <td>{description}</td>
             <td>
-                <i className="checkBtn far fa-circle fa-2x">&nbsp;</i>
+                <i 
+                    className="checkBtn far fa-circle fa-2x"
+                    data-id={index} 
+                    onClick={itemStatus}
+                >&nbsp;</i>
             </td>
         </tr>
     )  

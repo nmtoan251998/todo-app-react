@@ -50,18 +50,31 @@ class App extends React.Component {
     onInputChange = (event) => {                  
         this.setState({value: event.target.value});                
     }    
+    
+    onItemStatusChange = (event) => {
+        // console.log(event.currentTarget.dataset['id']);
+        const itemIndex = parseInt(event.currentTarget.dataset['id']) - 1;        
 
-    // updateTodo = (dataFromChild) => {
-    //     this.setState({value: dataFromChild});
-    // }
+        const newState = Object.assign({}, this.state);
+        newState.todoList[itemIndex].isCompleted = !this.state.todoList[itemIndex].isCompleted;    
+
+        this.setState({            
+            newState
+        })        
+
+        console.log(this.state)
+    }
 
     render() {
         // console.log(this.state.value);
         return (
             <div className="container">
                 <Header headerName={this.state.header} />            
-                <InputBar value={this.state.value} onInputChange={this.onInputChange} onFormSubmit={this.handleSubmit}/>
-                <TodoList todoList={this.state.todoList}/>                
+                <InputBar 
+                    value={this.state.value} 
+                    onInputChange={this.onInputChange} 
+                    onFormSubmit={this.handleSubmit} />
+                <TodoList todoList={this.state.todoList} itemStatus={this.onItemStatusChange} />                
             </div>            
         )
     }
